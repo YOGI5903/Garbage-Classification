@@ -67,10 +67,22 @@ if sample_img_choice:
     img_array = img_array/255.0
     predictions = model.predict(img_array)
     label=labels[np.argmax(predictions)]
-    image1 = Image.open("garbage.jpg")
+    image1 = Image.open("Vidrio_256.jpg")
     st.image(image1, caption="Uploaded Image", use_column_width=True)    
     st.markdown(
         f"<h2 style='text-align: center;'>{label}</h2>",
         unsafe_allow_html=True,
     )
-    
+    image2 = Image.open("metal_16.jpg")
+    image2=image.smart_resize(image2,(150,150))
+    img_array = image.img_to_array(image2)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = img_array/255.0
+    predictions = model.predict(img_array)
+    label=labels[np.argmax(predictions)]
+    image1 = Image.open("metal_16.jpg")
+    st.image(image2, caption="Uploaded Image", use_column_width=True)    
+    st.markdown(
+        f"<h2 style='text-align: center;'>{label}</h2>",
+        unsafe_allow_html=True,
+    )
